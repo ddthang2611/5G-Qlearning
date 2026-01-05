@@ -67,7 +67,7 @@ class PSO_Qlearning:
             if action == 0:
                 self.w = max(0.4, self.w - 0.05)   # giảm w → exploitation
             elif action == 2:
-                self.w = min(0.9, self.w + 0.05)   # tăng w → exploration
+                self.w = min(0.9, self.w + 0.1)   # tăng w → exploration
             # action == 1: giữ nguyên w
 
             # ---------- PSO UPDATE ----------
