@@ -14,9 +14,10 @@ net = NetworkModel(
     num_rb=num_rb)
 
 dim = net.num_users
+iter_num = 100
 
 def fitness(x):
-    r = net.evaluate(x)
+    r = net.evaluate(x, last_call=False) 
     return (
         0.4 * r["throughput"]
         - 0.3 * r["latency"]
@@ -27,11 +28,10 @@ def fitness(x):
 pso = PSO(num_particles=10, dim=dim, fitness_func=fitness)
 pso_q = PSO_Qlearning(num_particles=10, dim=dim, fitness_func=fitness)
 
-iter_num = 100
 fit_pso = []
 fit_pso_q = []
 
-for _ in range(iter_num):
+for i in range(iter_num):
     fit_pso.append(pso.step())
     fit_pso_q.append(pso_q.step())
 

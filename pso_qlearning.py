@@ -28,9 +28,9 @@ class PSO_Qlearning:
         self.epsilon = 0.1   # epsilon-greedy
 
     def get_state(self, delta_fitness):
-        if delta_fitness > 0.5:
+        if delta_fitness > 0.7:
             return 2    # cải thiện nhanh
-        elif delta_fitness > 0:
+        elif delta_fitness > 0.1:
             return 1    # cải thiện chậm
         else:
             return 0    # kẹt / suy giảm

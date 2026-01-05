@@ -9,7 +9,7 @@ class NetworkModel:
         self.num_rb = num_rb
         self.channel_gain = np.random.uniform(0.5, 2.0, self.num_users)
 
-    def evaluate(self, allocation):
+    def evaluate(self, allocation, last_call=False):
         rb_alloc = allocation / np.sum(allocation) * self.num_rb
         rb_alloc = np.maximum(rb_alloc, 1e-3)
 
@@ -24,6 +24,13 @@ class NetworkModel:
 
         urllc_latency = latency[self.num_embb:]
         reliability = np.mean(urllc_latency < 10)
+
+        if last_call == True:
+            print(f"Throughput: {np.sum(throughput):.2f}")
+            print(f"Latency (eMBB avg): {np.mean(latency[:self.num_embb]):.2f}")
+            print(f"Latency (URLLC avg): {np.mean(urllc_latency):.2f}")
+            print(f"Energy Consumption: {np.sum(energy):.2f}")
+            print(f"Reliability (URLLC): {reliability:.2f}")
 
         return {
             "throughput": np.sum(throughput),
