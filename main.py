@@ -22,7 +22,6 @@ def fitness(x):
         0.4 * r["throughput"]
         - 0.3 * r["latency"]
         - 0.2 * r["energy"]
-        + 0.1 * r["reliability"] * 100
     )
 
 pso = PSO(num_particles=10, dim=dim, fitness_func=fitness)
