@@ -17,7 +17,7 @@ dim = net.num_users
 iter_num = 100
 
 def fitness(x):
-    r = net.evaluate(x, last_call=False) 
+    r = net.evaluate(x) 
     # Fitness = T - (0.5*L + 0.3*E) theo phương trình (4.1.3) [cite: 335, 418]
     return r["throughput"] - (0.5 * r["latency"] + 0.3 * r["energy"])
 
@@ -28,7 +28,6 @@ fit_pso, fit_pso_q = [], []
 
 for i in range(iter_num):
     fit_pso.append(pso.step())
-    # TRUYỀN THAM SỐ VÀO ĐÂY ĐỂ TRÁNH LỖI TYPEERROR
     fit_pso_q.append(pso_q.step(i, iter_num)) 
 
 plt.plot(fit_pso, label="Standard PSO")

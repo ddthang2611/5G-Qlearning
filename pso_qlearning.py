@@ -11,7 +11,7 @@ class PSO_Qlearning:
         
         self.alpha = 0.5     # Tốc độ học
         self.gamma = 0.9     # Hệ số chiết khấu
-        self.epsilon = 0.2   # Tăng nhẹ để hạt thoát khỏi bẫy hội tụ cục bộ [cite: 337]
+        self.epsilon = 0.2   # Tăng nhẹ để hạt thoát khỏi bẫy hội tụ cục bộ 
 
         self.x = np.random.rand(num_particles, dim)
         self.v = np.zeros((num_particles, dim))
@@ -45,7 +45,6 @@ class PSO_Qlearning:
             r1, r2 = np.random.rand(), np.random.rand()
             
             q_influence = self.alpha * (self.q_table[state, action] / 100.0) 
-            print(q_influence)
             
             self.v[i] = (w * self.v[i] + 
                          self.c1 * r1 * (self.pbest[i] - self.x[i]) + 
@@ -56,6 +55,7 @@ class PSO_Qlearning:
             new_fit = self.fitness_func(self.x[i])
             
             reward = new_fit - self.pbest_val[i] 
+            print(reward)
             
             new_state = self.get_state(reward)
             self.q_table[state, action] = (1 - self.alpha) * self.q_table[state, action] + \
