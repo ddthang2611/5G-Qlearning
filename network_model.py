@@ -23,18 +23,15 @@ class NetworkModel:
         energy = 0.5 * rb_alloc
 
         urllc_latency = latency[self.num_embb:]
-        reliability = np.mean(urllc_latency < 10)
 
         if last_call == True:
             print(f"Throughput: {np.sum(throughput):.2f}")
             print(f"Latency (eMBB avg): {np.mean(latency[:self.num_embb]):.2f}")
             print(f"Latency (URLLC avg): {np.mean(urllc_latency):.2f}")
             print(f"Energy Consumption: {np.sum(energy):.2f}")
-            print(f"Reliability (URLLC): {reliability:.2f}")
 
         return {
             "throughput": np.sum(throughput),
             "latency": np.mean(latency),
             "energy": np.sum(energy),
-            "reliability": reliability
         }
