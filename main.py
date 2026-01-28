@@ -18,7 +18,7 @@ iter_num = 100
 
 def fitness(x):
     r = net.evaluate(x) 
-    # Fitness = T - (0.5*L + 0.3*E) theo phương trình (4.1.3) [cite: 335, 418]
+
     return r["throughput"] - (0.5 * r["latency"] + 0.3 * r["energy"])
 
 pso = PSO(num_particles=10, dim=dim, fitness_func=fitness)
